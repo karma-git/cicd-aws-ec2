@@ -66,7 +66,7 @@
     
     # prepare docker-compose
     - name: Clone source repo
-      become: yes
+      become: true
       become_user: ubuntu
       git:
         repo: https://github.com/karma-git/cicd_ec2.git
@@ -77,5 +77,5 @@
     #   community.docker.docker_compose:
     #     project_name: cicd_ec2
     #     project_src: /home/ubuntu
-    #     restarted: yes
+    #     restarted: true
     #   register: output
