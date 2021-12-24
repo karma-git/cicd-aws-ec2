@@ -69,4 +69,6 @@ jobs:
             # after
             yq e '.services.api.image' docker-compose.yml
             # restart docker
-            docker-compose restart
+            docker-compose pull
+            docker-compose stop
+            docker-compose up -d
