@@ -2,6 +2,11 @@
 
 - name: install docker engine ubuntu
   hosts: all
+  vars:
+    YQ_VERSION: "4.16.2"
+    YQ_BINARY: "yq_linux_amd64"
+
+  
 
   become: true
   become_method: sudo
@@ -32,9 +37,18 @@
 
     - name: 4. Install docker engine
       apt:
-        name: docker-ce
+        name: 
+          - docker-ce
+          - docker-compose
         state: latest
         update_cache: true
+    
+    # YQ
+    - name: 5. Download YQ
+      get_url:
+        url: "https://github.com/mikefarah/yq/releases/download/v{{ YQ_VERSION }}/{{ YQ_BINARY }}"
+        dest: /usr/bin/yq
+        mode: '0555'
 
     # Docker post-install steps for ubuntu
 
