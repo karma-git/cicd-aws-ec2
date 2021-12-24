@@ -54,5 +54,6 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            cd /home/ubuntu/cicd_ec2/app
             yq e -i '.services.api.image = strenv(IMAGE_REF)' docker-compose.yml
             docker-compose restart
