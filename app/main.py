@@ -22,7 +22,6 @@ async def runtime_info() -> dict:
 
 @app.get("/info")
 async def application_info() -> dict:
-    """description"""
     return {
         "commit": os.environ.get("CI_COMMIT_SHORT_SHA"),
         "pipeline": os.environ.get("CI_PIPELINE_ID"),
