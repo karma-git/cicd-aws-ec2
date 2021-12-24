@@ -65,12 +65,12 @@
         append: true
     
     # prepare docker-compose
-    - name: Read-write git checkout from github
+    - name: Clone source repo
+      become: yes
+      become_user: ubuntu
       git:
         repo: https://github.com/karma-git/cicd_ec2.git
         dest: /home/ubuntu/cicd_ec2
-        clone: yes
-        update: yes
 
     # not working with ansible 2.9.6
     # - name: Restart services

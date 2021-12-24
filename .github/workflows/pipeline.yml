@@ -45,6 +45,9 @@ jobs:
             karmawow/cicd_ec2:${{ github.ref_name }}
             karmawow/cicd_ec2:latest
       # ssh to machine, modify compose and restart it
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         env:
