@@ -44,6 +44,7 @@
         update_cache: true
     
     # YQ
+
     - name: 5. Download YQ
       get_url:
         url: "https://github.com/mikefarah/yq/releases/download/v{{ YQ_VERSION }}/{{ YQ_BINARY }}"
@@ -62,3 +63,18 @@
         name: ubuntu
         groups: docker
         append: true
+    
+    # prepare docker-compose
+    - name: 5. Download compose file
+      get_url:
+        url: https://github.com/karma-git/cicd_ec2/blob/master/app/docker-compose.yml
+        dest: /home/ubuntu
+        mode: '0554'
+
+    # not working with ansible 2.9.6
+    # - name: Restart services
+    #   community.docker.docker_compose:
+    #     project_name: cicd_ec2
+    #     project_src: /home/ubuntu
+    #     restarted: yes
+    #   register: output

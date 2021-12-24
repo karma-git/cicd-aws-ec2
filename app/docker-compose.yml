@@ -2,16 +2,17 @@ version: '3'
 
 services:
   api:
-    container_name: "demo-aui-app"
-    image: karmawow/cicd_ec2
-    build:
-      context: ./
-      dockerfile: Dockerfile
-      args:
-        CI_COMMIT_SHORT_SHA: docker-compose
-        CI_PIPELINE_ID: docker-compose
-        CI_COMMIT_TAG: docker-compose
-    volumes:
-      - ./:/home/app
+    container_name: "demo-cicd"
+    image: karmawow/cicd_ec2:latest
+    # build:
+    #   context: ./
+    #   dockerfile: Dockerfile
+    #   args:
+    #     CI_COMMIT_SHORT_SHA: docker-compose
+    #     CI_PIPELINE_ID: docker-compose
+    #     CI_COMMIT_TAG: docker-compose
+    # volumes:
+    #   - ./:/home/app
+    restart: always
     ports:
       - "8080:8080"
