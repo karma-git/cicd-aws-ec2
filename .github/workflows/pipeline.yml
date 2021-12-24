@@ -51,17 +51,19 @@ jobs:
     steps:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
+        env:
+          IMAGE_TAG: karmawow/cicd_ec2:${{ github.run_id }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: GITHUB_RUN_ID
+          envs: IMAGE_TAG
           script: |
             cd /home/ubuntu/cicd_ec2/app
             # debug
-            echo $GITHUB_RUN_ID && pwd && ls && yq e '.services.api.image' docker-compose.yml
+            echo $IMAGE_TAG && pwd && ls && yq e '.services.api.image' docker-compose.yml
             # update image
-            yq e -i '.services.api.image = "karmawow/cicd_ec2:" + strenv(GITHUB_RUN_ID)' docker-compose.yml
+            yq e -i '.services.api.image = strenv(IMAGE_TAG)' docker-compose.yml
             # after
             yq e '.services.api.image' docker-compose.yml
             # restart docker
