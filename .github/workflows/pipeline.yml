@@ -58,9 +58,9 @@ jobs:
           script: |
             cd /home/ubuntu/cicd_ec2/app
             # debug
-            echo ${IMAGE_REF} && pwd && ls && yq e '.services.api.image' docker-compose.yml
+            echo $GITHUB_RUN_ID && pwd && ls && yq e '.services.api.image' docker-compose.yml
             # update image
-            yq e -i '.services.api.image = "karmawow/cicd_ec2" + strenv(GITHUB_RUN_ID)' docker-compose.yml
+            yq e -i '.services.api.image = "karmawow/cicd_ec2:" + strenv(GITHUB_RUN_ID)' docker-compose.yml
             # after
             yq e '.services.api.image' docker-compose.yml
             # restart docker
