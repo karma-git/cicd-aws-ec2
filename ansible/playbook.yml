@@ -65,11 +65,12 @@
         append: true
     
     # prepare docker-compose
-    - name: 5. Download compose file
-      get_url:
-        url: https://github.com/karma-git/cicd_ec2/blob/master/app/docker-compose.yml
-        dest: /home/ubuntu
-        mode: '0554'
+    - name: Read-write git checkout from github
+      git:
+        repo: https://github.com/karma-git/cicd_ec2.git
+        dest: /home/ubuntu/cicd_ec2
+        clone: yes
+        update: yes
 
     # not working with ansible 2.9.6
     # - name: Restart services
