@@ -3,7 +3,7 @@ version: '3'
 services:
   api:
     container_name: "demo-aui-app"
-    image: rgitlab.studionx.ru:443/infrastructure/playground/demo-aiu-app
+    image: karmawow/cicd_ec2
     build:
       context: ./
       dockerfile: Dockerfile
