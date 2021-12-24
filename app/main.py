@@ -27,3 +27,5 @@ async def application_info() -> dict:
         "pipeline": os.environ.get("CI_PIPELINE_ID"),
         "tag": os.environ.get("CI_COMMIT_TAG"),
     }
+
+# CI TRIGGER 1
