@@ -28,4 +28,4 @@ async def application_info() -> dict:
         "tag": os.environ.get("CI_COMMIT_TAG"),
     }
 
-# CI TRIGGER 1 2 3
+# CI TRIGGER 1 2 3 4
