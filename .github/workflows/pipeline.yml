@@ -60,8 +60,10 @@ jobs:
           envs: IMAGE_TAG
           script: |
             cd /home/ubuntu/cicd_ec2/app
-            # debug
-            echo $IMAGE_TAG && pwd && ls && yq e '.services.api.image' docker-compose.yml
+            # eval disired env var
+            export IMAGE_TAG=$(echo ${IMAGE_TAG})
+            # debug 
+            echo $IMAGE_TAG && env | grep IMAGE_TAG && pwd && ls && yq e '.services.api.image' docker-compose.yml
             # update image
             yq e -i '.services.api.image = strenv(IMAGE_TAG)' docker-compose.yml
             # after
