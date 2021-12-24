@@ -55,6 +55,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: GITHUB_RUN_ID
           script: |
             cd /home/ubuntu/cicd_ec2/app
             # debug
